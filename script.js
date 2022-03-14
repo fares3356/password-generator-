@@ -43,25 +43,23 @@ function generatePassword() {
 
     } else {
         // if the length is satisfied, then ask user to confirm their user_choices
-        confirmNumber = window.confirm("Do you want numbers?");
         confirmSpecialChar = window.confirm("Do you want special characters?");
-        confirmUppercase = window.confirm("Do you want Uppercase letters?");
         confirmLowercase = window.confirm("Do you want Lowercase letters?");
+        confirmUppercase = window.confirm("Do you want Uppercase letters?");
+        confirmNumber = window.confirm("Do you want numbers?");
     };
 
     // if statement when no criteria are selected
     if (!confirmSpecialChar && !confirmNumber && !confirmUppercase && !confirmLowercase) {
         user_choices = window.alert("You must select at least one creteria!");
-
     }
     // Else if: 4 options are selected
     else if (confirmSpecialChar && confirmNumber && confirmUppercase && confirmLowercase) {
-
         user_choices = character.concat(number, alpha, alpha2);
     }
     // Else if: 3 options are selected
-    else if (confirmSpecialChar && confirmNumber && confirmUppercase) {
-        user_choices = character.concat(number, alpha2);
+    else if (confirmNumber && confirmLowercase && confirmUppercase) {
+        user_choices = number.concat(alpha, alpha2);
     }
     else if (confirmSpecialChar && confirmNumber && confirmLowercase) {
         user_choices = character.concat(number, alpha);
@@ -69,28 +67,29 @@ function generatePassword() {
     else if (confirmSpecialChar && confirmLowercase && confirmUppercase) {
         user_choices = character.concat(alpha, alpha2);
     }
-    else if (confirmNumber && confirmLowercase && confirmUppercase) {
-        user_choices = number.concat(alpha, alpha2);
+    else if (confirmSpecialChar && confirmNumber && confirmUppercase) {
+        user_choices = character.concat(number, alpha2);
     }
     // Else if: 2 options are selected
+    else if (confirmSpecialChar && confirmLowercase) {
+        user_user_choices = character.concat(alpha);
+    }
     else if (confirmSpecialChar && confirmNumber) {
         user_choices = character.concat(number);
-
-    } else if (confirmSpecialChar && confirmLowercase) {
-        user_user_choices = character.concat(alpha);
-
-    } else if (confirmSpecialChar && confirmUppercase) {
+    }
+    else if (confirmSpecialChar && confirmUppercase) {
         user_choices = character.concat(alpha2);
+    }
+    else if (confirmNumber && confirmUppercase) {
+        user_choices = number.concat(alpha2);
     }
     else if (confirmLowercase && confirmNumber) {
         user_choices = alpha.concat(number);
-
-    } else if (confirmLowercase && confirmUppercase) {
-        user_choices = alpha.concat(alpha2);
-
-    } else if (confirmNumber && confirmUppercase) {
-        user_choices = number.concat(alpha2);
     }
+    else if (confirmLowercase && confirmUppercase) {
+        user_choices = alpha.concat(alpha2);
+    }
+
     // Else if: 1 options is selected
     else if (confirmSpecialChar) {
         user_choices = character;
